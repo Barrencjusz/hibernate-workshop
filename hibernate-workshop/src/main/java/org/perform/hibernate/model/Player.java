@@ -2,6 +2,8 @@ package org.perform.hibernate.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Player {
@@ -14,6 +16,10 @@ public class Player {
 	private String surname;
 	
 	private String nickname;
+	
+	@ManyToOne
+	@PrimaryKeyJoinColumn
+	private Team team;
 
 	public Long getId() {
 		return id;

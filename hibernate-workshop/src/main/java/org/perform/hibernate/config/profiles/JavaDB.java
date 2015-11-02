@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @Profile("javadb")
 @Import(HibernateConfig.class)
-@PropertySource(value = { "classpath:javadb.properties" })
+@PropertySource({ "classpath:javadb.properties" })
 public class JavaDB {
-	
+
 }
