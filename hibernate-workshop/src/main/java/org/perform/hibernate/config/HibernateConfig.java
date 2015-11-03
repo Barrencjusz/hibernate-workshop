@@ -7,9 +7,14 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.perform.hibernate.config.profiles.JavaDB;
+import org.perform.hibernate.config.profiles.PiotrekPostgreSQL;
+import org.perform.hibernate.config.profiles.PostgreSQL;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -19,6 +24,8 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableTransactionManagement
+@ComponentScan("org.perform.hibernate.dao")
+@Import({ JavaDB.class, PostgreSQL.class, PiotrekPostgreSQL.class })
 public class HibernateConfig {
 
 	@Value("${jdbc.driverClass}")
