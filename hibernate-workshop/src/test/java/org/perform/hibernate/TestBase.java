@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles({ "javadb" })
 @ContextConfiguration(classes = { ContextConfig.class })
-public class TestBase {
+public abstract class TestBase {
 
   @Resource
   protected Dao dao;

@@ -19,7 +19,7 @@ public class Dao {
   @Resource
   private SessionFactory sessionFactory;
 
-  protected Session getSession() {
+  public Session getSession() {
     return sessionFactory.getCurrentSession();
   }
 

@@ -11,7 +11,7 @@ public class Season {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(precision = 4, scale = 0)
+  @Column(precision = 4, scale = 0, name="calendars_year")
   private BigDecimal year;
 
   public Long getId() {
