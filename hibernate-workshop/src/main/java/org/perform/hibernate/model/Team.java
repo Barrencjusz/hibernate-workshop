@@ -2,6 +2,7 @@ package org.perform.hibernate.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -9,35 +10,38 @@ import javax.persistence.OneToMany;
 @Entity
 public class Team {
 
-	@Id
-	private Long id;
-	
-	private String name;	
-	
-	@OneToMany(mappedBy = "team")
-	private Set<Player> players;
+  @Id
+  private Long id;
 
-	public Long getId() {
-		return id;
-	}
+  @Column(nullable = false)
+  private String name;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  private String nickname;
 
-	public String getName() {
-		return name;
-	}
+  @OneToMany(mappedBy = "team")
+  private Set<Player> players;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public Set<Player> getPlayers() {
-		return players;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public void setPlayers(Set<Player> players) {
-		this.players = players;
-	}
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Set<Player> getPlayers() {
+    return players;
+  }
+
+  public void setPlayers(Set<Player> players) {
+    this.players = players;
+  }
 }
