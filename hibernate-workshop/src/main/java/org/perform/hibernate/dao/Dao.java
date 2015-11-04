@@ -1,9 +1,11 @@
 package org.perform.hibernate.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.perform.hibernate.misc.Safe;
@@ -13,26 +15,32 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class Dao {
-	
-	@Resource
-	private SessionFactory sessionFactory;
 
-	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
-	public void save(Object entity) {
-		getSession().saveOrUpdate(entity);
-	}
+  @Resource
+  private SessionFactory sessionFactory;
 
-	public void delete(Object entity) {
-		getSession().delete(entity);
-	}
+  protected Session getSession() {
+    return sessionFactory.getCurrentSession();
+  }
 
-	public <MODEL, ID extends Serializable> MODEL load(Class<MODEL> modelClass, ID id) {
-		return Safe.cast(getSession().load(modelClass, id));
-	}
+  public void save(Object entity) {
+    getSession().saveOrUpdate(entity);
+  }
 
-	public <MODEL, ID extends Serializable> MODEL get(Class<MODEL> modelClass, ID id) {
-		return Safe.cast(getSession().get(modelClass, id));
-	}
+  public void delete(Object entity) {
+    getSession().delete(entity);
+  }
+
+  public <MODEL, ID extends Serializable> MODEL load(Class<MODEL> modelClass, ID id) {
+    return Safe.cast(getSession().load(modelClass, id));
+  }
+
+  public <MODEL, ID extends Serializable> MODEL get(Class<MODEL> modelClass, ID id) {
+    return Safe.cast(getSession().get(modelClass, id));
+  }
+
+  public <MODEL> List<MODEL> list(Class<MODEL> modelClass) {
+    Criteria criteria = getSession().createCriteria(modelClass);
+    return Safe.cast(criteria.list());
+  }
 }
