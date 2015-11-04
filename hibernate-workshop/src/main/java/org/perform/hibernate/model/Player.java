@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.perform.hibernate.model.embeddable.Naming;
 import org.perform.hibernate.model.enumeration.Position;
 
 @Entity
@@ -13,13 +14,8 @@ public class Player {
   @Id
   private Long id;
 
-  @Column(nullable = false)
-  private String name;
-
-  @Column(nullable = false)
-  private String surname;
-
-  private String nickname;
+  @Embedded
+  private Naming naming = new Naming();
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
@@ -33,35 +29,27 @@ public class Player {
   private Set<Sponsor> sponsors = new HashSet<>(0);
 
   public Long getId() {
-    return id;
+    return this.id;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public Naming getNaming() {
+    return this.naming;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setNaming(Naming naming) {
+    this.naming = naming;
   }
 
-  public String getSurname() {
-    return surname;
+  public Position getPosition() {
+    return this.position;
   }
 
-  public void setSurname(String surname) {
-    this.surname = surname;
-  }
-
-  public String getNickname() {
-    return nickname;
-  }
-
-  public void setNickname(String nickname) {
-    this.nickname = nickname;
+  public void setPosition(Position position) {
+    this.position = position;
   }
 
   public Team getTeam() {
@@ -79,4 +67,5 @@ public class Player {
   public void setSponsors(Set<Sponsor> sponsors) {
     this.sponsors = sponsors;
   }
+
 }

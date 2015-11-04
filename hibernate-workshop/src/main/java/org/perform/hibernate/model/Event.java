@@ -2,11 +2,33 @@ package org.perform.hibernate.model;
 
 import java.util.Date;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
-public class Event {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Event {
 
+  @Id
+  private Long id;
+  
   @Temporal(TemporalType.TIMESTAMP)
-  private Date date;
+  protected Date date;
+
+  protected String description;
+
+  public Date getDate() {
+    return this.date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }
