@@ -9,8 +9,9 @@ import javax.persistence.*;
 public abstract class Event {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
-  
+
   @Temporal(TemporalType.TIMESTAMP)
   protected Date date;
 

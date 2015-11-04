@@ -1,20 +1,30 @@
 package org.perform.hibernate.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 public class Season {
 
-	@Id
-	private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
-	public Long getId() {
-		return id;
-	}
+  @Column(scale = 4, precision = 0)
+  private Short year;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public Short getYear() {
+    return this.year;
+  }
+
+  public void setYear(Short year) {
+    this.year = year;
+  }
 }

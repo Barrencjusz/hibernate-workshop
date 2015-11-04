@@ -10,6 +10,7 @@ import org.perform.hibernate.model.embeddable.Naming;
 public class Team {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
   @Embedded

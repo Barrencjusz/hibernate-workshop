@@ -1,14 +1,21 @@
 package org.perform.hibernate.model.events;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.Enumerated;
 
-import org.perform.hibernate.model.Event;
-import org.perform.hibernate.model.Team;
+import org.perform.hibernate.model.enumeration.Side;
 
 @Entity
-public class Corner extends Event {
+public class Corner extends TeamEvent {
+  
+  @Enumerated
+  private Side side;
 
-  @OneToOne
-  private Team team;
+  public Side getSide() {
+    return this.side;
+  }
+
+  public void setSide(Side side) {
+    this.side = side;
+  }
 }

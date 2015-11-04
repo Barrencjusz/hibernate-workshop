@@ -10,16 +10,17 @@ import javax.persistence.*;
 public class Game {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
   @Temporal(TemporalType.DATE)
   private Date date;
 
   @Column(nullable = false)
-  private Long hostScore;
+  private Short hostScore;
 
   @Column(nullable = false)
-  private Long guestScore;
+  private Short guestScore;
 
   @ManyToOne
   private Team host;
@@ -46,19 +47,19 @@ public class Game {
     this.date = date;
   }
 
-  public Long getHostScore() {
+  public Short getHostScore() {
     return this.hostScore;
   }
 
-  public void setHostScore(Long hostScore) {
+  public void setHostScore(Short hostScore) {
     this.hostScore = hostScore;
   }
 
-  public Long getGuestScore() {
+  public Short getGuestScore() {
     return this.guestScore;
   }
 
-  public void setGuestScore(Long guestScore) {
+  public void setGuestScore(Short guestScore) {
     this.guestScore = guestScore;
   }
 

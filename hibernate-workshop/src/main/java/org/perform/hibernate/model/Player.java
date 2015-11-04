@@ -12,6 +12,7 @@ import org.perform.hibernate.model.enumeration.Position;
 public class Player {
 
   @Id
+  @GeneratedValue(strategy=GenerationType.SEQUENCE)
   private Long id;
 
   @Embedded
@@ -25,7 +26,7 @@ public class Player {
   @PrimaryKeyJoinColumn
   private Team team;
 
-  @ManyToMany
+  @ManyToMany(mappedBy = "players")
   private Set<Sponsor> sponsors = new HashSet<>(0);
 
   public Long getId() {
