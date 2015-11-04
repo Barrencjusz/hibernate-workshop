@@ -17,6 +17,9 @@ public abstract class Event {
 
   protected String description;
 
+  @ManyToOne
+  private Game game;
+  
   public Date getDate() {
     return this.date;
   }
@@ -31,5 +34,13 @@ public abstract class Event {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public Game getGame() {
+    return this.game;
+  }
+
+  public void setGame(Game game) {
+    this.game = game;
   }
 }

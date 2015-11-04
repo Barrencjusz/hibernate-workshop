@@ -1,5 +1,6 @@
 package org.perform.hibernate.model.embeddable;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -15,7 +16,7 @@ public class Naming {
 
   @ElementCollection
   @CollectionTable(name = "nicknames")
-  private Set<String> nicknames;
+  private Set<String> nicknames = new HashSet<>();
 
   public String getName() {
     return this.name;

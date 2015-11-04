@@ -28,7 +28,7 @@ public class Game {
   @ManyToOne
   private Team guest;
 
-  @OneToMany
+  @OneToMany(mappedBy = "game")
   private Set<Event> events = new HashSet<>(0);
 
   public Long getId() {

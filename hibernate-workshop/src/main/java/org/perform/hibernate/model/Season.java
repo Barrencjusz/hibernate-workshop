@@ -1,5 +1,7 @@
 package org.perform.hibernate.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +11,8 @@ public class Season {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Column(scale = 4, precision = 0)
-  private Short year;
+  @Column(precision = 4, scale = 0)
+  private BigDecimal year;
 
   public Long getId() {
     return id;
@@ -20,11 +22,11 @@ public class Season {
     this.id = id;
   }
 
-  public Short getYear() {
+  public BigDecimal getYear() {
     return this.year;
   }
 
-  public void setYear(Short year) {
+  public void setYear(BigDecimal year) {
     this.year = year;
   }
 }
