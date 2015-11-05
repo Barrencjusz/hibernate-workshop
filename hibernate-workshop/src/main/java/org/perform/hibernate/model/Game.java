@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 public class Game {
 
@@ -87,4 +89,8 @@ public class Game {
     this.events = events;
   }
 
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this).append(id).build();
+  }
 }

@@ -18,4 +18,9 @@ public class SimpleTest extends TestBase {
     dao.save(player);
     System.out.println(dao.load(Player.class, 1L).getNaming().getName());
   }
+
+  @Override
+  protected Class<?> getTestClass() {
+    return SimpleTest.class;
+  }
 }

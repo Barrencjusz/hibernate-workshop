@@ -1,30 +1,24 @@
 package org.perform.hibernate.criteria;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.hibernate.Criteria;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.perform.hibernate.TestBase;
+import org.perform.hibernate.misc.PopulatingExecutionListener;
 import org.perform.hibernate.misc.Safe;
 import org.perform.hibernate.model.Game;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.transaction.annotation.Transactional;
 
+@TestExecutionListeners(CriteriaPaginationTest.Populator.class)
 public class CriteriaPaginationTest extends TestBase {
 
-  private static final Logger LOGGER = Logger.getLogger(CriteriaPaginationTest.class.getName());
-
   private StopWatch stopWatch = new StopWatch();
-
-  @Before
-  @Transactional
-  public void before() {
-    insertTestGames();
-  }
 
   @Test
   @Transactional
@@ -33,8 +27,8 @@ public class CriteriaPaginationTest extends TestBase {
 
     stopWatch.start();
     List<Game> list = Safe.cast(criteria.list());
-    LOGGER.info("took: " + stopWatch.getTime() + " ms");
-    LOGGER.info(list.toString());
+    logger.info("took: " + stopWatch.getTime() + " ms");
+    logger.info(list.toString());
   }
 
   @Test
@@ -42,11 +36,11 @@ public class CriteriaPaginationTest extends TestBase {
   public void paginate() {
     Criteria criteria = dao.getSession().createCriteria(Game.class);
     criteria.setFirstResult(0);
-    criteria.setFetchSize(10);
+    criteria.setMaxResults(10);
     stopWatch.start();
     List<Game> list = Safe.cast(criteria.list());
-    LOGGER.info("took: " + stopWatch.getTime() + " ms");
-    LOGGER.info(list.toString());
+    logger.info("took: " + stopWatch.getTime() + " ms");
+    logger.info(list.toString());
   }
 
   @After
@@ -54,13 +48,31 @@ public class CriteriaPaginationTest extends TestBase {
     stopWatch.reset();
   }
 
-  public void insertTestGames() {
-    for (int i = 0; i < 10; i++) {
-      Game game = new Game();
-      game.setDate(new Date());
-      game.setGuestScore((short) 2);
-      game.setHostScore((short) 1);
-      dao.save(game);
+  @Override
+  protected Class<?> getTestClass() {
+    return CriteriaPaginationTest.class;
+  }
+
+  public static class Populator extends PopulatingExecutionListener {
+
+    List<Game> games = new ArrayList<>();
+
+    @Override
+    protected void populate() {
+      for (int i = 0; i < 100; i++) {
+        Game game = new Game();
+        game.setDate(new Date());
+        game.setGuestScore((short) 2);
+        game.setHostScore((short) 1);
+        games.add(game);
+        dao.save(game);
+      }
     }
+
+    @Override
+    protected void depopulate() {
+      games.forEach(game -> dao.delete(game));
+    }
+
   }
 }
