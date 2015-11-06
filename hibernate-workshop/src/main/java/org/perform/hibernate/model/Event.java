@@ -12,7 +12,7 @@ public abstract class Event {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
-  @Temporal(TemporalType.TIMESTAMP)
+  @Temporal(TemporalType.DATE)
   protected Date date;
 
   protected String description;

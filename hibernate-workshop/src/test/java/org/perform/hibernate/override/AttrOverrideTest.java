@@ -2,12 +2,13 @@ package org.perform.hibernate.override;
 
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.annotation.Resource;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.perform.hibernate.TestBase;
-import org.perform.hibernate.model.Coach;
 import org.perform.hibernate.model.Contract;
 import org.perform.hibernate.model.Referee;
 
@@ -30,7 +31,7 @@ public class AttrOverrideTest extends TestBase {
 		Date endDate = calendar.getTime();
 
 		referee.setFirstContract(new Contract(100000, startDate, endDate));
-		//referee.setSecondContract(new Contract(200000, startDate, endDate));
+		referee.setSecondContract(new Contract(200000, startDate, endDate));
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();

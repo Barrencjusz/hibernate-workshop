@@ -1,5 +1,8 @@
 package org.perform.hibernate.model;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +21,12 @@ public class Referee {
 	@Embedded
 	private Contract firstContract;
 	
-	/*@Embedded
+	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "salary", column = @Column(name = "SC_SALARY") ),
 			@AttributeOverride(name = "beginDate", column = @Column(name = "SC_BEGIN_DATE") ),
 			@AttributeOverride(name = "endDate", column = @Column(name = "SC_END_DATE") ), })
 	private Contract secondContract;
-*/
+
 	public Contract getFirstContract() {
 		return firstContract;
 	}
@@ -54,6 +57,14 @@ public class Referee {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Contract getSecondContract() {
+		return secondContract;
+	}
+
+	public void setSecondContract(Contract secondContract) {
+		this.secondContract = secondContract;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,7 +19,7 @@ public class Coach {
 	@Column
 	private String name;
 
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name = "COACH_ADDRESS", joinColumns = @JoinColumn(name = "COACH_ID") )
 	private Collection<Address> addresses = new ArrayList<>();
 
