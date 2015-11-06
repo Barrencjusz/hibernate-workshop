@@ -2,13 +2,14 @@ package org.perform.hibernate.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Embeddable
 public class Contract {
-
+	
 	private Integer salary;
 
 	@Temporal(TemporalType.DATE)

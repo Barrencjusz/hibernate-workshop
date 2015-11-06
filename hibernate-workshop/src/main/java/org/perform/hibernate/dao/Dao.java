@@ -10,10 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.perform.hibernate.misc.Safe;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
 public class Dao {
 
   @Resource

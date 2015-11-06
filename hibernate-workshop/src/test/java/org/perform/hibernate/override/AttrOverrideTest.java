@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.perform.hibernate.TestBase;
+import org.perform.hibernate.model.Coach;
 import org.perform.hibernate.model.Contract;
 import org.perform.hibernate.model.Referee;
 
@@ -19,7 +20,6 @@ public class AttrOverrideTest extends TestBase {
 	public void test() {
 
 		Referee referee = new Referee();
-		referee.setId(1L);
 		referee.setName("Howard Webb");
 
 		Calendar calendar = Calendar.getInstance();
@@ -36,6 +36,8 @@ public class AttrOverrideTest extends TestBase {
 		session.beginTransaction();
 		session.save(referee);
 		session.getTransaction().commit();
+		//session.bySimpleNaturalId(Coach.class).load("howard.webb@gmail.gov");
+		
 		session.close();
 	}
 
