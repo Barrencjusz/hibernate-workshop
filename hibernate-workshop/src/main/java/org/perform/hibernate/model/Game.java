@@ -6,8 +6,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 @Entity
 public class Game {
 
@@ -30,7 +28,7 @@ public class Game {
   @ManyToOne
   private Team guest;
 
-  @OneToMany(mappedBy = "game")
+  @OneToMany(mappedBy = "game", cascade = { CascadeType.ALL }, orphanRemoval = true)
   private Set<Event> events = new HashSet<>(0);
 
   public Long getId() {
@@ -87,10 +85,5 @@ public class Game {
 
   public void setEvents(Set<Event> events) {
     this.events = events;
-  }
-
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this).append(id).build();
   }
 }
