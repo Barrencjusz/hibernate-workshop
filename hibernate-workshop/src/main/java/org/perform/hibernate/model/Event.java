@@ -17,7 +17,7 @@ public abstract class Event {
 
   protected String description;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   private Game game;
   
   public Date getDate() {

@@ -26,7 +26,7 @@ public class Player {
   @PrimaryKeyJoinColumn
   private Team team;
 
-  @ManyToMany(mappedBy = "players")
+  @ManyToMany(mappedBy = "players", cascade=CascadeType.ALL)
   private Set<Sponsor> sponsors = new HashSet<>(0);
 
   public Long getId() {
