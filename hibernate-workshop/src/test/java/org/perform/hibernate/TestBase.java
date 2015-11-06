@@ -14,7 +14,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles({ "postgresql" })
+@ActiveProfiles({ "javadb" })
 @ContextConfiguration(classes = { ContextConfig.class })
 @TestExecutionListeners({ TransactionalTestExecutionListener.class, DependencyInjectionTestExecutionListener.class })
 public abstract class TestBase {
